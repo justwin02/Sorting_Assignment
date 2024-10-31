@@ -4,7 +4,8 @@ import java.util.Scanner;
 /*
  * For this assignment, I will be implementing Bubble Sorting as it is the simplest sorting
  * algorithm that works by repeatdly swapping teh adjacent elements if they are in the 
- * wrong position. I will be using Java as my programming language of choice. 
+ * wrong position. I will be using Java as my programming language of choice. In this assingment,   
+ * the code must pass the positive, negative, performance, boundary, and idempotency cases.
  */
 
 class BubbleSorting{
@@ -70,6 +71,10 @@ class BubbleSorting{
 
                 bubbleSort(arr,arr_size);
                 System.out.println("Bubble Sorted array: ");
+                printArray(arr, arr_size);
+
+                bubbleSort(arr, arr_size);
+                System.out.println("Idempotencty case array: ");
                 printArray(arr, arr_size);
 
             }else{
