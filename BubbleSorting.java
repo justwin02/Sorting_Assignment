@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 /*
  * For this assignment, I will be implementing Bubble Sorting as it is the simplest sorting
@@ -37,12 +38,47 @@ class BubbleSorting{
     }
 
     public static void main(String[] args) {
-        int arr[] = { 64, 34, 25, 12, 22, 11, 90 }; 
-        System.out.printf("Original array: %n%s%n",Arrays.toString(arr));
+        Scanner scanner = new Scanner(System.in);
 
-        int n = arr.length; // length of the array
-        bubbleSort(arr, n);
-        System.out.println("Sorted array: ");
-        printArray(arr, n);
+        System.out.print("Enter the size of the array: ");
+        int arr_size = 0;
+        if(scanner.hasNextInt()){
+            arr_size = scanner.nextInt();
+            scanner.nextLine();
+
+            // Initliaze the size of the array
+            int[] arr = new int[arr_size];
+
+            System.out.println("Enter the elements for the array in one line: ");
+            String line = scanner .nextLine();
+            String[] elements = line.split(" ");
+
+            if(elements.length == arr_size){
+                for(int i = 0; i < arr_size; i++){
+                    try{
+                        arr[i] = Integer.parseInt(elements[i]);
+                    }catch(NumberFormatException e){
+                        System.err.println("Error: not a valid integer at position " + (i+1));
+                        return;
+                    }
+                }
+
+                // Copy original array before sorting
+                int[] originalArr = Arrays.copyOf(arr, arr_size);
+                System.out.println("Original array: ");
+                printArray(originalArr, arr_size);
+
+                bubbleSort(arr,arr_size);
+                System.out.println("Bubble Sorted array: ");
+                printArray(arr, arr_size);
+
+            }else{
+                System.err.println("Error: Number of elements does not match the specified array size.");
+            }
+            
+        }else
+            System.err.println("Error: Not an integer");
+
+        scanner.close();
     }
 }
